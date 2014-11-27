@@ -52,7 +52,21 @@
 	07/25/2012		Mike Tinius			5.2.0			Created new
 	11/12/2012		Mike Tinius			5.2.0			Added the ability to save to a file after each resources formatted text is completed.  Modified input parameters.
 
-    © 2012, 2014 Cisco and/or its affiliates. All rights reserved.
+    © 2010, 2014 Cisco and/or its affiliates. All rights reserved.
+
+    This software is released under the Eclipse Public License. The details can be found in the file LICENSE. 
+    Any dependent libraries supplied by third parties are provided under their own open source licenses as 
+    described in their own LICENSE files, generally named .LICENSE.txt. The libraries supplied by Cisco as 
+    part of the Composite Information Server/Cisco Data Virtualization Server, particularly csadmin-XXXX.jar, 
+    csarchive-XXXX.jar, csbase-XXXX.jar, csclient-XXXX.jar, cscommon-XXXX.jar, csext-XXXX.jar, csjdbc-XXXX.jar, 
+    csserverutil-XXXX.jar, csserver-XXXX.jar, cswebapi-XXXX.jar, and customproc-XXXX.jar (where -XXXX is an 
+    optional version number) are provided as a convenience, but are covered under the licensing for the 
+    Composite Information Server/Cisco Data Virtualization Server. They cannot be used in any way except 
+    through a valid license for that product.
+
+    This software is released AS-IS!. Support for this software is not covered by standard maintenance agreements with Cisco. 
+    Any support for this software by Cisco would be covered by paid consulting agreements, and would be billable work.
+
 
 ===================
 EXAMPLE OUTPUT:
@@ -255,19 +269,6 @@ Documentation Generation Time=0 00:00:01.7
       </element>
     </datatype>
   </dependency>
-  <dependency target="/shared/ASAssets/Utilities/documentation/helpers/getDocConstant" type="PROCEDURE">
-    <datatype type="PROCEDURE" refId="1">
-      <element name="constantPath" direction="IN">
-        <datatype referenceDefinitionSet="/shared/ASAssets/Utilities/TypeDefinitions" referenceType="pathType" type="STRING" maxLength="1000"/>
-      </element>
-      <element name="constantName" direction="IN">
-        <datatype type="STRING" maxLength="255"/>
-      </element>
-      <element name="outValue" direction="OUT">
-        <datatype type="STRING" maxLength="2147483647"/>
-      </element>
-    </datatype>
-  </dependency>
   <dependency target="/shared/ASAssets/Utilities/log/logDebugMessage" type="PROCEDURE">
     <datatype type="PROCEDURE" refId="1">
       <element name="moduleName" direction="IN">
@@ -304,6 +305,19 @@ Documentation Generation Time=0 00:00:01.7
       </element>
     </datatype>
   </dependency>
+  <dependency target="/shared/ASAssets/Utilities/string/getConstant" type="PROCEDURE">
+    <datatype type="PROCEDURE" refId="1">
+      <element name="constantPath" direction="IN">
+        <datatype referenceDefinitionSet="/shared/ASAssets/Utilities/TypeDefinitions" referenceType="pathType" type="STRING" maxLength="1000"/>
+      </element>
+      <element name="constantName" direction="IN">
+        <datatype type="STRING" maxLength="255"/>
+      </element>
+      <element name="outValue" direction="OUT">
+        <datatype type="STRING" maxLength="2147483647"/>
+      </element>
+    </datatype>
+  </dependency>
   <dependency target="/shared/ASAssets/Utilities/string/isEmpty" type="PROCEDURE">
     <datatype type="PROCEDURE" refId="1">
       <element name="request" direction="IN">
@@ -317,7 +331,7 @@ Documentation Generation Time=0 00:00:01.7
   <dependency target="/system/customfunctions/emptyStr" type="PROCEDURE">
     <datatype type="PROCEDURE" refId="1"></datatype>
   </dependency>
-  <dependency target="/system/customfunctions/getDocConstant" type="PROCEDURE">
+  <dependency target="/system/customfunctions/getConstant" type="PROCEDURE">
     <datatype type="PROCEDURE" refId="1"></datatype>
   </dependency>
   <dependency target="/system/customfunctions/isEmpty" type="PROCEDURE">
@@ -378,7 +392,21 @@ Documentation Generation Time=0 00:00:01.7
 	07/25/2012		Mike Tinius			5.2.0			Created new
 	11/12/2012		Mike Tinius			5.2.0			Added the ability to save to a file after each resources formatted text is completed.  Modified input parameters.
 
-    © 2012, 2014 Cisco and/or its affiliates. All rights reserved.
+    © 2010, 2014 Cisco and/or its affiliates. All rights reserved.
+
+    This software is released under the Eclipse Public License. The details can be found in the file LICENSE. 
+    Any dependent libraries supplied by third parties are provided under their own open source licenses as 
+    described in their own LICENSE files, generally named .LICENSE.txt. The libraries supplied by Cisco as 
+    part of the Composite Information Server/Cisco Data Virtualization Server, particularly csadmin-XXXX.jar, 
+    csarchive-XXXX.jar, csbase-XXXX.jar, csclient-XXXX.jar, cscommon-XXXX.jar, csext-XXXX.jar, csjdbc-XXXX.jar, 
+    csserverutil-XXXX.jar, csserver-XXXX.jar, cswebapi-XXXX.jar, and customproc-XXXX.jar (where -XXXX is an 
+    optional version number) are provided as a convenience, but are covered under the licensing for the 
+    Composite Information Server/Cisco Data Virtualization Server. They cannot be used in any way except 
+    through a valid license for that product.
+
+    This software is released AS-IS!. Support for this software is not covered by standard maintenance agreements with Cisco. 
+    Any support for this software by Cisco would be covered by paid consulting agreements, and would be billable work.
+
 
 ===================
 EXAMPLE OUTPUT:
@@ -550,55 +578,55 @@ BEGIN
 	end if;
 
 	-- Initialize default values
-	set debug = getDocConstant(constantPath, &apos;debug&apos;);
+	set debug = getConstant(constantPath, &apos;debug&apos;);
 
 	-- Determine if the default parameters or incoming parameters should be used.
 	if (isEmpty(in_resourcePath) = 0) then
 		set resourcePath = in_resourcePath;
 	else
-		set resourcePath = getDocConstant(constantPath, &apos;resourcePath&apos;);
+		set resourcePath = getConstant(constantPath, &apos;resourcePath&apos;);
 	end if;
 
 	if (isEmpty(in_resourceType) = 0) then
 		set resourceType = in_resourceType;
 	else
-		set resourceType = getDocConstant(constantPath, &apos;resourceType&apos;);
+		set resourceType = getConstant(constantPath, &apos;resourceType&apos;);
 	end if;
 
 	if (isEmpty(in_filePath) = 0) then
 		set filePath = in_filePath;
 	else
-		set filePath = getDocConstant(constantPath, &apos;filePath&apos;);
+		set filePath = getConstant(constantPath, &apos;filePath&apos;);
 	end if;
 
 	if (isEmpty(in_docPreambleImpl) = 0) then
 		set docPreambleImpl = in_docPreambleImpl;
 	else
-		set docPreambleImpl = getDocConstant(constantPath, &apos;docPreambleImpl&apos;);
+		set docPreambleImpl = getConstant(constantPath, &apos;docPreambleImpl&apos;);
 	end if;
 
 	if (isEmpty(in_docResourceFormatImpl) = 0) then
 		set docResourceFormatImpl = in_docResourceFormatImpl;
 	else
-		set docResourceFormatImpl = getDocConstant(constantPath, &apos;docResourceFormatImpl&apos;);
+		set docResourceFormatImpl = getConstant(constantPath, &apos;docResourceFormatImpl&apos;);
 	end if;
 
 	if (isEmpty(in_switches) = 0) then
 		set switches = in_switches;
 	else
-		set switches = getDocConstant(constantPath, &apos;switches&apos;);
+		set switches = getConstant(constantPath, &apos;switches&apos;);
 	end if;
 
 	if (isEmpty(in_excludeKeywordsInPathList) = 0) then
 		set excludeKeywordsInPathList = in_excludeKeywordsInPathList;
 	else
-		set excludeKeywordsInPathList = getDocConstant(constantPath, &apos;excludeKeywordsInPathList&apos;);
+		set excludeKeywordsInPathList = getConstant(constantPath, &apos;excludeKeywordsInPathList&apos;);
 	end if;
 
 	if (isEmpty(in_excludePathsList) = 0) then
 		set excludePathsList = in_excludePathsList;
 	else
-		set excludePathsList = getDocConstant(constantPath, &apos;excludePathsList&apos;);
+		set excludePathsList = getConstant(constantPath, &apos;excludePathsList&apos;);
 	end if;
 
 	-- Override the switches to always save to a file in intermediate mode as this is the entire point of this driver procedure
@@ -636,7 +664,7 @@ END</attribute>
   <attribute name="explicitly.designed" type="BOOLEAN">false</attribute>
   <attribute name="impactLevel" type="INTEGER">0</attribute>
   <attribute name="impactMessage" type="NULL"/>
-  <attribute name="lastModifiedDate" type="LONG">1397496271821</attribute>
+  <attribute name="lastModifiedDate" type="LONG">1416603624220</attribute>
   <attribute name="lastModifiedUserDomain" type="STRING">composite</attribute>
   <attribute name="lastModifiedUserName" type="STRING">admin</attribute>
   <attribute name="model" type="NULL"/>
